@@ -5,9 +5,18 @@
   </Configs>
   <NewExtensions/>
   <sounds name="sound"/>
-  <sprites name="sprites"/>
+  <sprites name="sprites">
+    <sprites name="window">
+      <sprite>sprites\winTop_spr</sprite>
+      <sprite>sprites\winTopLeft_spr</sprite>
+      <sprite>sprites\winTopRight_spr</sprite>
+    </sprites>
+  </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <objects name="objects">
+    <object>objects\window</object>
+  </objects>
   <rooms name="rooms">
     <room>rooms\Main_rm</room>
   </rooms>
