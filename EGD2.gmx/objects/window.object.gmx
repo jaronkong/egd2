@@ -162,16 +162,16 @@ y = round( clamp( y, 0, ( display_get_gui_height( ) - height ) ) );
             <string>///Drag and drop
 
 if ( mouse_check_button( mb_left ) ) {
+    var mx = device_mouse_x_to_gui( 0 );
+    var my = device_mouse_y_to_gui( 0 );
     if ( grabbing ) {
-        x = ( mouse_x - grabX );
-        y = ( mouse_y - grabY );
+        x = ( mx - grabX );
+        y = ( my - grabY );
     } else if ( mouse_check_button_pressed( mb_left ) ) {
-        if ( point_in_rectangle( mouse_x, mouse_y,
-                x, y, x+width, y+thickTop ) )
-        {
+        if ( point_in_rectangle( mx, my, x, y, x+width, y+thickTop ) ) {
             grabbing = true;
-            grabX = ( mouse_x - x );
-            grabY = ( mouse_y - y );
+            grabX = ( mx - x );
+            grabY = ( my - y );
         }
     }
 } else {
@@ -182,7 +182,7 @@ if ( mouse_check_button( mb_left ) ) {
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
         <id>603</id>
