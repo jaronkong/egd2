@@ -8,8 +8,13 @@
   <sprites name="sprites">
     <sprites name="window">
       <sprite>sprites\winTop_spr</sprite>
+      <sprite>sprites\winBottom_spr</sprite>
+      <sprite>sprites\winLeft_spr</sprite>
+      <sprite>sprites\winRight_spr</sprite>
       <sprite>sprites\winTopLeft_spr</sprite>
       <sprite>sprites\winTopRight_spr</sprite>
+      <sprite>sprites\winBottomLeft_spr</sprite>
+      <sprite>sprites\winBottomRight_spr</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background"/>

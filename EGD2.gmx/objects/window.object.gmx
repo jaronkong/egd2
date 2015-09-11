@@ -28,9 +28,14 @@
             <string>///Define sprites
 
 imgTop = winTop_spr;
+imgBottom = winBottom_spr;
+imgLeft = winLeft_spr;
+imgRight = winRight_spr;
 
 imgTopLeft = winTopLeft_spr;
 imgTopRight = winTopRight_spr;
+imgBottomLeft = winBottomLeft_spr;
+imgBottomRight = winBottomRight_spr;
 </string>
           </argument>
         </arguments>
@@ -59,8 +64,34 @@ height = 128;
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Operational variables
+
+thickTop = ( sprite_get_height( imgTop ) - sprite_get_yoffset( imgTop ) );
+thickBottom = sprite_get_yoffset( imgBottom );
+thickLeft = ( sprite_get_width( imgLeft ) - sprite_get_xoffset( imgLeft ) );
+thickRight = sprite_get_xoffset( imgRight );
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="3" enumb="2">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -79,8 +110,8 @@ height = 128;
             <kind>1</kind>
             <string>///Keep window onscreen
 
-x = clamp( x, 0, ( display_get_gui_width( ) - width ) );
-y = clamp( y, 0, ( display_get_gui_height( ) - height ) );
+x = round( clamp( x, 0, ( display_get_gui_width( ) - width ) ) );
+y = round( clamp( y, 0, ( display_get_gui_height( ) - height ) ) );
 </string>
           </argument>
         </arguments>
@@ -105,17 +136,30 @@ y = clamp( y, 0, ( display_get_gui_height( ) - height ) );
             <kind>1</kind>
             <string>///Draw the outer border
 
-var tPos, tStop;
+var tStart, tStop;
 
-tPos = ( x + ( sprite_get_width( imgTopLeft ) - sprite_get_xoffset( imgTopLeft ) ) );
-tStop = ( x + width - sprite_get_xoffset( imgTopRight ) );
-while ( tPos &lt; tStop ) {
-    draw_sprite( imgTop, 0, tPos, y );
-    tPos += sprite_get_width( imgTop );
+tStart = ( x + thickLeft );
+tStop = ( x + width - thickRight );
+for ( var px = tStart; px &lt; tStop; px += sprite_get_width( imgTop ) ) {
+    draw_sprite( imgTop, 0, px, y );
+}
+for ( var px = tStart; px &lt; tStop; px += sprite_get_width( imgBottom ) ) {
+    draw_sprite( imgBottom, 0, px, y+height );
+}
+
+tStart = ( y + thickTop );
+tStop = ( y + height - thickBottom );
+for ( var py = tStart; py &lt; tStop; py += sprite_get_height( imgLeft ) ) {
+    draw_sprite( imgLeft, 0, x, py );
+}
+for ( var py = tStart; py &lt; tStop; py += sprite_get_height( imgRight ) ) {
+    draw_sprite( imgRight, 0, x+width, py );
 }
 
 draw_sprite( imgTopLeft, 0, x, y );
 draw_sprite( imgTopRight, 0, x+width, y );
+draw_sprite( imgBottomLeft, 0, x, y+height );
+draw_sprite( imgBottomRight, 0, x+width, y+height );
 </string>
           </argument>
         </arguments>
