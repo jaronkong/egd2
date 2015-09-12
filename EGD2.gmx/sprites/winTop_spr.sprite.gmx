@@ -2,7 +2,7 @@
 <sprite>
   <type>0</type>
   <xorig>0</xorig>
-  <yorigin>0</yorigin>
+  <yorigin>8</yorigin>
   <colkind>1</colkind>
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
@@ -18,7 +18,7 @@
   </TextureGroups>
   <For3D>0</For3D>
   <width>1</width>
-  <height>24</height>
+  <height>32</height>
   <frames>
     <frame index="0">images\winTop_spr_0.png</frame>
   </frames>
