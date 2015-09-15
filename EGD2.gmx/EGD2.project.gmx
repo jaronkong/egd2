@@ -17,18 +17,24 @@
       <sprite>sprites\winBottomRight_spr</sprite>
     </sprites>
     <sprite>sprites\icon_spr</sprite>
+    <sprite>sprites\gun_spr</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
+    <background>background\background1</background>
   </backgrounds>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\transitionGotoRoom.gml</script>
+  </scripts>
   <objects name="objects">
     <object>objects\window</object>
     <object>objects\sceneController</object>
+    <object>objects\sceneObject</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\Main_rm</room>
-    <room>rooms\room1</room>
+    <room>rooms\Space_rm</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
