@@ -296,6 +296,18 @@ draw_sprite( imgBottomRight, 0, x+width, y+height );
             <string>///Draw the icon and title
 
 draw_sprite( icon, 0, x + thickTop/2, y + thickTop/2 );
+
+draw_set_color( c_black );
+draw_set_alpha( 1 );
+
+draw_set_font( noone );
+draw_set_halign( fa_left );
+draw_set_valign( fa_middle );
+
+draw_text( x + thickTop, y + thickTop/2, title );
+
+draw_set_color( c_white );
+draw_set_alpha( 1 );
 </string>
           </argument>
         </arguments>
