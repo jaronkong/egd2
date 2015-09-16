@@ -108,6 +108,10 @@ thickRight = sprite_get_xoffset( imgRight );
             <kind>1</kind>
             <string>///Interaction variables
 
+mouseDown = false;
+mouseX = 0;
+mouseY = 0;
+
 grabX = 0;
 grabY = 0;
 grabbing = false;
@@ -183,25 +187,144 @@ y = round( clamp( y, 0, ( display_get_gui_height( ) - height ) ) );
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Update mouse
+
+mouseX = device_mouse_x_to_gui( 0 );
+mouseY = device_mouse_y_to_gui( 0 );
+
+if ( !mouseDown &amp;&amp; mouse_check_button( mb_left ) ) {
+    if ( point_in_rectangle( mouseX, mouseY, x, y, x+width, y+height ) ) {
+        mouseDown = true;
+        event_user( 2 );
+    }
+} else if ( mouseDown &amp;&amp; !mouse_check_button( mb_left ) ) {
+    mouseDown = false;
+    event_user( 3 );
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Drag and drop
 
 if ( mouse_check_button( mb_left ) ) {
-    var mx = device_mouse_x_to_gui( 0 );
-    var my = device_mouse_y_to_gui( 0 );
     if ( grabbing ) {
-        x = ( mx - grabX );
-        y = ( my - grabY );
-    } else if ( mouse_check_button_pressed( mb_left ) ) {
-        if ( point_in_rectangle( mx, my, x, y, x+width, y+thickTop ) ) {
-            grabbing = true;
-            grabX = ( mx - x );
-            grabY = ( my - y );
-        }
+        x = ( mouseX - grabX );
+        y = ( mouseY - grabY );
     }
 } else {
     grabbing = false;
 }
 </string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="13">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Mouse release</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="12">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Mouse press</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Window dragging
+
+if ( point_in_rectangle( mouseX, mouseY, x, y, x+width, y+thickTop ) ) {
+    grabbing = true;
+    grabX = ( mouseX - x );
+    grabY = ( mouseY - y );
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Close the window</string>
           </argument>
         </arguments>
       </action>
