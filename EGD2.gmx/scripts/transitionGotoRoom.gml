@@ -1,8 +1,8 @@
-///transitionGotoRoom( destinationRoom );
-
-var aDestinationRoom = argument0;
-
+///transitionGotoRoom( destinationRoom, centerx, centery, zoom );
 
 with ( sceneController ) {
-    targetRoom = aDestinationRoom;
+    targetRoom = argument0;
+    transitionX = argument1;
+    transitionY = argument2;
+    zoom = argument3;
 }

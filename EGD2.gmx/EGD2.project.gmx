@@ -19,6 +19,10 @@
     </sprites>
     <sprite>sprites\icon_spr</sprite>
     <sprite>sprites\gun_spr</sprite>
+    <sprites name="Cursor">
+      <sprite>sprites\cursorMove_spr</sprite>
+      <sprite>sprites\cursorDefault_spr</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
@@ -32,7 +36,11 @@
   <objects name="objects">
     <object>objects\window</object>
     <object>objects\sceneController</object>
-    <object>objects\sceneObject</object>
+    <objects name="SceneObjects">
+      <object>objects\sceneObject</object>
+      <object>objects\roomTransition</object>
+    </objects>
+    <object>objects\mainController</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\Main_rm</room>
