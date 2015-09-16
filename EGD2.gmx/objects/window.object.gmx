@@ -25,6 +25,29 @@
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Push to front
+
+event_user( 0 );
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Define sprites
 
 imgTop = winTop_spr;
@@ -198,9 +221,17 @@ mouseY = device_mouse_y_to_gui( 0 );
 mouseOver = false;
 if ( point_in_rectangle( mouseX, mouseY, x, y, x+width, y+height ) ) {
     mouseOver = true;
+    with ( window ) {
+        if ( id == other.id ) continue;
+        if ( depth &gt; other.depth ) continue;
+        if ( point_in_rectangle( mouseX, mouseY, x, y, x+width, y+height ) ) {
+            other.mouseOver = false;
+            break;
+        }
+    }
 }
 
-if ( !mouseDown &amp;&amp; mouse_check_button( mb_left ) ) {
+if ( mouse_check_button_pressed( mb_left ) ) {
     if ( mouseOver ) {
         mouseDown = true;
         event_user( 2 );
@@ -417,6 +448,32 @@ if ( point_in_rectangle( mouseX, mouseY, x, y, x+width, y+thickTop ) ) {
           <argument>
             <kind>1</kind>
             <string>Bring to front</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Set depth
+
+with ( window ) {
+    if ( id == other.id ) continue;
+    other.depth = min( other.depth, ( depth - 1 ) );
+}
+</string>
           </argument>
         </arguments>
       </action>
