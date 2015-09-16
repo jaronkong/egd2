@@ -36,6 +36,8 @@ imgTopLeft = winTopLeft_spr;
 imgTopRight = winTopRight_spr;
 imgBottomLeft = winBottomLeft_spr;
 imgBottomRight = winBottomRight_spr;
+
+imgClose = winClose_spr;
 </string>
           </argument>
         </arguments>
@@ -107,6 +109,11 @@ thickRight = sprite_get_xoffset( imgRight );
           <argument>
             <kind>1</kind>
             <string>///Interaction variables
+
+mouseX = 0;
+mouseY = 0;
+mouseOver = false;
+mouseDown = false;
 
 grabX = 0;
 grabY = 0;
@@ -183,25 +190,233 @@ y = round( clamp( y, 0, ( display_get_gui_height( ) - height ) ) );
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Update mouse
+
+mouseX = device_mouse_x_to_gui( 0 );
+mouseY = device_mouse_y_to_gui( 0 );
+
+mouseOver = false;
+if ( point_in_rectangle( mouseX, mouseY, x, y, x+width, y+height ) ) {
+    mouseOver = true;
+}
+
+if ( !mouseDown &amp;&amp; mouse_check_button( mb_left ) ) {
+    if ( mouseOver ) {
+        mouseDown = true;
+        event_user( 2 );
+    }
+} else if ( mouseDown &amp;&amp; !mouse_check_button( mb_left ) ) {
+    mouseDown = false;
+    event_user( 3 );
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Drag and drop
 
 if ( mouse_check_button( mb_left ) ) {
-    var mx = device_mouse_x_to_gui( 0 );
-    var my = device_mouse_y_to_gui( 0 );
     if ( grabbing ) {
-        x = ( mx - grabX );
-        y = ( my - grabY );
-    } else if ( mouse_check_button_pressed( mb_left ) ) {
-        if ( point_in_rectangle( mx, my, x, y, x+width, y+thickTop ) ) {
-            grabbing = true;
-            grabX = ( mx - x );
-            grabY = ( my - y );
-        }
+        x = ( mouseX - grabX );
+        y = ( mouseY - grabY );
     }
 } else {
     grabbing = false;
 }
 </string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="13">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Mouse release</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Check for window close
+
+if ( pointInSprite( mouseX, mouseY, imgClose, x + width, y ) ) {
+    event_user( 1 );
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="12">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Mouse press</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Bring to front
+
+event_user( 0 );
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Window dragging
+
+if ( point_in_rectangle( mouseX, mouseY, x, y, x+width, y+thickTop ) ) {
+    grabbing = true;
+    grabX = ( mouseX - x );
+    grabY = ( mouseY - y );
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Close the window</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>203</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_kill_object</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Bring to front</string>
           </argument>
         </arguments>
       </action>
@@ -295,7 +510,7 @@ draw_sprite( imgBottomRight, 0, x+width, y+height );
             <kind>1</kind>
             <string>///Draw the icon and title
 
-draw_sprite( icon, 0, x + thickTop/2, y + thickTop/2 );
+draw_sprite( icon, 0, x + thickLeft + thickTop/2, y + thickTop/2 );
 
 draw_set_color( c_black );
 draw_set_alpha( 1 );
@@ -304,10 +519,40 @@ draw_set_font( noone );
 draw_set_halign( fa_left );
 draw_set_valign( fa_middle );
 
-draw_text( x + thickTop, y + thickTop/2, title );
+draw_text( x + thickLeft + thickTop, y + thickTop/2, title );
 
 draw_set_color( c_white );
 draw_set_alpha( 1 );
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Draw action buttons
+
+var tIndex = 0;
+if ( pointInSprite( mouseX, mouseY, imgClose, x + width, y ) ) {
+    if ( mouseOver &amp;&amp; !mouseDown ) {
+        tIndex = 1;
+    }
+}
+
+draw_sprite( imgClose, tIndex, x + width, y );
 </string>
           </argument>
         </arguments>

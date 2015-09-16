@@ -15,6 +15,7 @@
       <sprite>sprites\winTopRight_spr</sprite>
       <sprite>sprites\winBottomLeft_spr</sprite>
       <sprite>sprites\winBottomRight_spr</sprite>
+      <sprite>sprites\winClose_spr</sprite>
     </sprites>
     <sprite>sprites\icon_spr</sprite>
     <sprite>sprites\gun_spr</sprite>
@@ -33,6 +34,7 @@
   <scripts name="scripts">
     <script>scripts\transitionGotoRoom.gml</script>
     <script>scripts\windowCreate.gml</script>
+    <script>scripts\pointInSprite.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\window</object>
