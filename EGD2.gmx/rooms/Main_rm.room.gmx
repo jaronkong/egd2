@@ -56,6 +56,9 @@
     <instance objName="sceneObject" x="512" y="448" name="inst_6E2FCF18" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="sceneObject" x="672" y="448" name="inst_07CD740B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="sceneObject" x="256" y="448" name="inst_ABD16F83" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="mainController" x="64" y="160" name="inst_BD448011" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="roomTransition" x="608" y="96" name="inst_039C2F88" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="windowShow" x="864" y="320" name="inst_BA9E95C5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

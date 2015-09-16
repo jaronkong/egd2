@@ -39,6 +39,9 @@ zoom = 0.25; //relative amount for transition, less than one for zoom back
 transitionProgress = 0;
 transitionTween = 0.03;
 
+
+backgroundZoomReduceFactor = 0.5; //smaller numbers = less background zoom
+
 </string>
           </argument>
         </arguments>
@@ -114,7 +117,7 @@ if ( targetRoom != noone &amp;&amp; room_exists( targetRoom ) ) {
                                             originX, originY );
         
         // Set position
-        tZoomDist = (tZoomDist * other.zoom * relDepth - tZoomDist) * other.transitionProgress;
+        tZoomDist = (tZoomDist * tCurrentZoom * relDepth - tZoomDist) * other.transitionProgress;
         x = originX + lengthdir_x( tZoomDist, tZoomDir );
         y = originY + lengthdir_y( tZoomDist, tZoomDir );
         
@@ -167,32 +170,6 @@ draw_set_color( c_black );
 draw_set_alpha( blackoutAlpha );
 
 draw_rectangle( 0, 0, window_get_width(), window_get_height(), false );
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="32">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Test
-
-transitionGotoRoom( Space_rm );
 
 </string>
           </argument>
