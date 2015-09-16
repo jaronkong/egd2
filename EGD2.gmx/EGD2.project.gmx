@@ -26,6 +26,7 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\transitionGotoRoom.gml</script>
+    <script>scripts\pointInSprite.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\window</object>
