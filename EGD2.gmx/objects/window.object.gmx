@@ -265,6 +265,31 @@ if ( mouse_check_button( mb_left ) ) {
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Check for window close
+
+if ( pointInSprite( mouseX, mouseY, imgClose, x + width, y ) ) {
+    event_user( 1 );
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="7" enumb="12">
       <action>
@@ -284,6 +309,29 @@ if ( mouse_check_button( mb_left ) ) {
           <argument>
             <kind>1</kind>
             <string>Mouse press</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Bring to front
+
+event_user( 0 );
+</string>
           </argument>
         </arguments>
       </action>
@@ -333,6 +381,42 @@ if ( point_in_rectangle( mouseX, mouseY, x, y, x+width, y+thickTop ) ) {
           <argument>
             <kind>1</kind>
             <string>Close the window</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>203</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_kill_object</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Bring to front</string>
           </argument>
         </arguments>
       </action>
@@ -462,8 +546,10 @@ draw_set_alpha( 1 );
             <string>///Draw action buttons
 
 var tIndex = 0;
-if ( mouseOver &amp;&amp; pointInSprite( mouseX, mouseY, imgClose, x + width, y ) ) {
-    tIndex = 1;
+if ( pointInSprite( mouseX, mouseY, imgClose, x + width, y ) ) {
+    if ( mouseOver &amp;&amp; !mouseDown ) {
+        tIndex = 1;
+    }
 }
 
 draw_sprite( imgClose, tIndex, x + width, y );
