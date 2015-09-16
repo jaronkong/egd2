@@ -39,6 +39,9 @@ zoom = 0.25; //relative amount for transition, less than one for zoom back
 transitionProgress = 0;
 transitionTween = 0.03;
 
+
+backgroundZoomReduceFactor = 0.5; //smaller numbers = less background zoom
+
 </string>
           </argument>
         </arguments>
@@ -114,7 +117,7 @@ if ( targetRoom != noone &amp;&amp; room_exists( targetRoom ) ) {
                                             originX, originY );
         
         // Set position
-        tZoomDist = (tZoomDist * other.zoom * relDepth - tZoomDist) * other.transitionProgress;
+        tZoomDist = (tZoomDist * tCurrentZoom * relDepth - tZoomDist) * other.transitionProgress;
         x = originX + lengthdir_x( tZoomDist, tZoomDir );
         y = originY + lengthdir_y( tZoomDist, tZoomDir );
         

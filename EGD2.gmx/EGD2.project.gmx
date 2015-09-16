@@ -18,6 +18,8 @@
     </sprites>
     <sprite>sprites\icon_spr</sprite>
     <sprite>sprites\gun_spr</sprite>
+    <sprite>sprites\gun2_spr</sprite>
+    <sprite>sprites\gun3_spr</sprite>
     <sprites name="Cursor">
       <sprite>sprites\cursorMove_spr</sprite>
       <sprite>sprites\cursorDefault_spr</sprite>
@@ -30,6 +32,7 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\transitionGotoRoom.gml</script>
+    <script>scripts\windowCreate.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\window</object>
@@ -37,6 +40,7 @@
     <objects name="SceneObjects">
       <object>objects\sceneObject</object>
       <object>objects\roomTransition</object>
+      <object>objects\windowShow</object>
     </objects>
     <object>objects\mainController</object>
   </objects>
