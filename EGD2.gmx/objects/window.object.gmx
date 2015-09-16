@@ -36,6 +36,8 @@ imgTopLeft = winTopLeft_spr;
 imgTopRight = winTopRight_spr;
 imgBottomLeft = winBottomLeft_spr;
 imgBottomRight = winBottomRight_spr;
+
+imgClose = winClose_spr;
 </string>
           </argument>
         </arguments>
@@ -108,9 +110,10 @@ thickRight = sprite_get_xoffset( imgRight );
             <kind>1</kind>
             <string>///Interaction variables
 
-mouseDown = false;
 mouseX = 0;
 mouseY = 0;
+mouseOver = false;
+mouseDown = false;
 
 grabX = 0;
 grabY = 0;
@@ -192,8 +195,13 @@ y = round( clamp( y, 0, ( display_get_gui_height( ) - height ) ) );
 mouseX = device_mouse_x_to_gui( 0 );
 mouseY = device_mouse_y_to_gui( 0 );
 
+mouseOver = false;
+if ( point_in_rectangle( mouseX, mouseY, x, y, x+width, y+height ) ) {
+    mouseOver = true;
+}
+
 if ( !mouseDown &amp;&amp; mouse_check_button( mb_left ) ) {
-    if ( point_in_rectangle( mouseX, mouseY, x, y, x+width, y+height ) ) {
+    if ( mouseOver ) {
         mouseDown = true;
         event_user( 2 );
     }
@@ -418,7 +426,7 @@ draw_sprite( imgBottomRight, 0, x+width, y+height );
             <kind>1</kind>
             <string>///Draw the icon and title
 
-draw_sprite( icon, 0, x + thickTop/2, y + thickTop/2 );
+draw_sprite( icon, 0, x + thickLeft + thickTop/2, y + thickTop/2 );
 
 draw_set_color( c_black );
 draw_set_alpha( 1 );
@@ -427,10 +435,38 @@ draw_set_font( noone );
 draw_set_halign( fa_left );
 draw_set_valign( fa_middle );
 
-draw_text( x + thickTop, y + thickTop/2, title );
+draw_text( x + thickLeft + thickTop, y + thickTop/2, title );
 
 draw_set_color( c_white );
 draw_set_alpha( 1 );
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Draw action buttons
+
+var tIndex = 0;
+if ( mouseOver &amp;&amp; pointInSprite( mouseX, mouseY, imgClose, x + width, y ) ) {
+    tIndex = 1;
+}
+
+draw_sprite( imgClose, tIndex, x + width, y );
 </string>
           </argument>
         </arguments>
