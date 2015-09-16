@@ -29,15 +29,15 @@
 
 blackoutAlpha = 1;
 targetBlackoutAlpha = 0;
-blackoutAlphaRate = 0.02;
+blackoutAlphaRate = 0.06;
 alphaTolerance = 0.05;
 
 targetRoom = noone;
 transitionX = room_width/2;
 transitionY = room_height/2;
-zoom = 1.25; //relative amount for transition, negative or positive for direction.
+zoom = 0.25; //relative amount for transition, less than one for zoom back
 transitionProgress = 0;
-transitionTween = 0.1;
+transitionTween = 0.03;
 
 </string>
           </argument>
@@ -103,8 +103,8 @@ if ( targetRoom != noone &amp;&amp; room_exists( targetRoom ) ) {
     transitionProgress = lerp( transitionProgress, 1, transitionTween );
     
     var tCurrentZoom = 1 + abs((1 - zoom) * transitionProgress);
-    if ( zoom &lt; 0 ) {
-        tCurrentZoom = 1 / abs(tCurrentZoom * transitionProgress);
+    if ( zoom &lt; 1 ) {
+        tCurrentZoom = 1 - abs(zoom * transitionProgress);
     }
     
     with ( sceneObject ) {
@@ -126,11 +126,47 @@ if ( targetRoom != noone &amp;&amp; room_exists( targetRoom ) ) {
         //y -= sprite_get_height( sprite_index ) * tCurrentZoom / 2 * sign( other.zoom );
     }
     
+    //Scale background
+    background_xscale = tCurrentZoom;
+    background_yscale = tCurrentZoom;
+    
     //Check for when close enough to transition
     if ( blackoutAlpha &gt; 1 - alphaTolerance ) {
         room_goto( targetRoom );
     }
 }
+
+background_x = - (background_width * background_xscale - room_width) / 2;
+background_y = - (background_height * background_yscale - room_height) / 2;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Draw
+
+draw_set_color( c_black );
+draw_set_alpha( blackoutAlpha );
+
+draw_rectangle( 0, 0, window_get_width(), window_get_height(), false );
 
 </string>
           </argument>
