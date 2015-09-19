@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>windowInteractive</parentName>
+  <parentName>window</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -39,13 +39,33 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Set properties
+            <string>///Define links
 
-title = "My Documents";
-back = windowExplorer_bg;
+linkCount = 0;
+
+linkIcon = false;
+linkPosX = false;
+linkPosY = false;
+linkObject = false;
 </string>
           </argument>
         </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="12">
+      <action>
+        <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
       </action>
       <action>
         <libid>1</libid>
@@ -63,13 +83,66 @@ back = windowExplorer_bg;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Place links
+            <string>///Check for link press
 
-linkIcon[linkCount] = file_spr;
-linkPosX[linkCount] = 140;
-linkPosY[linkCount] = 128;
-linkObject[linkCount] = windowExplorer;
-++linkCount;
+for ( var i = 0; i &lt; linkCount; ++i ) {
+    var px = ( x + thickLeft + linkPosX[i] );
+    var py = ( y + thickTop + linkPosY[i] );
+    if ( pointInSprite( mouseX, mouseY, linkIcon[i], px, py ) ) {
+        if ( object_exists( linkObject[i] ) ) {
+            instance_create( px, py, linkObject[i] );
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Draw links
+
+for ( var i = 0; i &lt; linkCount; ++i ) {
+    var px = ( x + thickLeft + linkPosX[i] );
+    var py = ( y + thickTop + linkPosY[i] );
+    var tIndex = 0;
+    if ( pointInSprite( mouseX, mouseY, linkIcon[i], px, py ) ) {
+        if ( mouseOver ) {
+            tIndex = 1;
+        }
+    }
+    draw_sprite( linkIcon[i], tIndex, px, py );
+}
 </string>
           </argument>
         </arguments>
