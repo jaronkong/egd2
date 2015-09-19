@@ -29,6 +29,7 @@
   <backgrounds name="background">
     <background>background\background0</background>
     <background>background\background1</background>
+    <background>background\windowExplorer_bg</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -37,7 +38,6 @@
     <script>scripts\pointInSprite.gml</script>
   </scripts>
   <objects name="objects">
-    <object>objects\window</object>
     <object>objects\sceneController</object>
     <objects name="SceneObjects">
       <object>objects\sceneObject</object>
@@ -45,6 +45,10 @@
       <object>objects\windowShow</object>
     </objects>
     <object>objects\mainController</object>
+    <objects name="Windows">
+      <object>objects\window</object>
+      <object>objects\windowExplorer</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\Main_rm</room>
