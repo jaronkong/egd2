@@ -192,7 +192,7 @@ back = noone;
             <string>///Keep window onscreen
 
 x = round( clamp( x, 0, ( display_get_gui_width( ) - width ) ) );
-y = round( clamp( y, 0, ( display_get_gui_height( ) - height ) ) );
+y = round( clamp( y, 0, ( display_get_gui_height( ) - thickTop ) ) );
 </string>
           </argument>
         </arguments>
