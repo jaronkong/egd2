@@ -33,6 +33,8 @@
       <sprite>sprites\cursorDefault_spr</sprite>
     </sprites>
     <sprite>sprites\file_spr</sprite>
+    <sprite>sprites\bankUsername_spr</sprite>
+    <sprite>sprites\bankPassword_spr</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
