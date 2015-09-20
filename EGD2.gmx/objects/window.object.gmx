@@ -3,12 +3,35 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-1</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Push to front
+
+event_user( 0 );
+</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -142,6 +165,8 @@ grabbing = false;
 
 icon = icon_spr;
 title = "My Computer";
+
+back = noone;
 </string>
           </argument>
         </arguments>
@@ -167,7 +192,35 @@ title = "My Computer";
             <string>///Keep window onscreen
 
 x = round( clamp( x, 0, ( display_get_gui_width( ) - width ) ) );
-y = round( clamp( y, 0, ( display_get_gui_height( ) - height ) ) );
+y = round( clamp( y, 0, ( display_get_gui_height( ) - thickTop ) ) );
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Update window size
+
+if ( background_exists( back ) ) {
+    width = ( thickLeft + background_get_width( back ) + thickRight - 1 );
+    height = ( thickTop + background_get_height( back ) + thickBottom - 1 );
+}
 </string>
           </argument>
         </arguments>
@@ -198,9 +251,17 @@ mouseY = device_mouse_y_to_gui( 0 );
 mouseOver = false;
 if ( point_in_rectangle( mouseX, mouseY, x, y, x+width, y+height ) ) {
     mouseOver = true;
+    with ( window ) {
+        if ( id == other.id ) continue;
+        if ( depth &gt; other.depth ) continue;
+        if ( point_in_rectangle( mouseX, mouseY, x, y, x+width, y+height ) ) {
+            other.mouseOver = false;
+            break;
+        }
+    }
 }
 
-if ( !mouseDown &amp;&amp; mouse_check_button( mb_left ) ) {
+if ( mouse_check_button_pressed( mb_left ) ) {
     if ( mouseOver ) {
         mouseDown = true;
         event_user( 2 );
@@ -386,6 +447,30 @@ if ( point_in_rectangle( mouseX, mouseY, x, y, x+width, y+thickTop ) ) {
       </action>
       <action>
         <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Sound
+
+audio_play_sound( closeWindow_sd, 1, false );
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>203</id>
         <kind>0</kind>
         <userelative>0</userelative>
@@ -417,6 +502,32 @@ if ( point_in_rectangle( mouseX, mouseY, x, y, x+width, y+thickTop ) ) {
           <argument>
             <kind>1</kind>
             <string>Bring to front</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Set depth
+
+with ( window ) {
+    if ( id == other.id ) continue;
+    other.depth = min( other.depth, ( depth - 1 ) );
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -579,6 +690,8 @@ draw_set_color( c_gray );
 
 draw_rectangle( x+thickLeft, y+thickTop,
     x+width-thickRight, y+height-thickBottom, false );
+
+draw_set_color( c_white );
 </string>
           </argument>
         </arguments>
@@ -599,10 +712,11 @@ draw_rectangle( x+thickLeft, y+thickTop,
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Reset drawing
+            <string>///Draw window back
 
-draw_set_color( c_white );
-draw_set_alpha( 1 );
+if ( background_exists( back ) ) {
+    draw_background( back, x + thickLeft, y + thickTop );
+}
 </string>
           </argument>
         </arguments>

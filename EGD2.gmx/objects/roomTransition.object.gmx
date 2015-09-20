@@ -76,6 +76,7 @@ cursorImage = cursorMove_spr;
 
 if ( !clicked ) {
     clicked = true;
+    audio_play_sound( steps_sd, 1, false );
     transitionGotoRoom( destinationRoom, room_width/2, room_height/2, zoom );
 
 }

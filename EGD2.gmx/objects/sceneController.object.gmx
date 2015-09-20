@@ -29,7 +29,7 @@
 
 blackoutAlpha = 1;
 targetBlackoutAlpha = 0;
-blackoutAlphaRate = 0.06;
+blackoutAlphaRate = 0.01;
 alphaTolerance = 0.05;
 
 targetRoom = noone;
@@ -37,7 +37,7 @@ transitionX = room_width/2;
 transitionY = room_height/2;
 zoom = 0.25; //relative amount for transition, less than one for zoom back
 transitionProgress = 0;
-transitionTween = 0.03;
+transitionTween = 0.005;
 
 
 backgroundZoomReduceFactor = 0.5; //smaller numbers = less background zoom

@@ -70,6 +70,7 @@ cursorImage = cursorMove_spr;
             <kind>1</kind>
             <string>///Clicked
 
+audio_play_sound( openWindow_sd, 1, false );
 windowCreate( creationWindow );
 
 </string>
