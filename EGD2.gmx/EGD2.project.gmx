@@ -40,6 +40,8 @@
     <sprite>sprites\bankPassword_spr</sprite>
     <sprite>sprites\bankLogin_spr</sprite>
     <sprite>sprites\textCursor_spr</sprite>
+    <sprite>sprites\file_cabinet</sprite>
+    <sprite>sprites\safe</sprite>
   </sprites>
   <backgrounds name="background">
     <backgrounds name="Scenes">
