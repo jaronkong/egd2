@@ -50,6 +50,7 @@
       <background>background\filePasswords_bg</background>
       <background>background\fileTerm_bg</background>
     </backgrounds>
+    <background>background\windowBank_bg</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -72,6 +73,7 @@
       <objects name="Interactive">
         <object>objects\windowInteractive</object>
         <object>objects\windowExplorer</object>
+        <object>objects\windowBank</object>
       </objects>
       <objects name="FileViewer">
         <object>objects\windowFile</object>
