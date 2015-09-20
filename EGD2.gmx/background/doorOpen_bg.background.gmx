@@ -13,7 +13,7 @@
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>1200</width>
-  <height>800</height>
+  <width>1920</width>
+  <height>1080</height>
   <data>images\doorOpen_bg.png</data>
 </background>
