@@ -84,6 +84,9 @@ textPosY = false;
 textValue = false;
 
 textActive = -1;
+
+textCursorImg = textCursor_spr;
+textCursorFrame = 0;
 </string>
           </argument>
         </arguments>
@@ -150,6 +153,11 @@ if ( mouse_check_button_pressed( mb_left ) ) {
 if ( textActive &gt;= 0 ) {
     keyboard_string = string_copy( keyboard_string, 1, 15 );
     textValue[textActive] = keyboard_string;
+}
+
+textCursorFrame += ( 1.5 / room_speed );
+if ( textCursorFrame &gt;= sprite_get_number( textCursorImg ) ) {
+    textCursorFrame -= sprite_get_number( textCursorImg );
 }
 </string>
           </argument>
@@ -239,6 +247,7 @@ for ( var i = 0; i &lt; textCount; ++i ) {
     if ( pointInSprite( mouseX, mouseY, textImage[i], px, py ) ) {
         textActive = i;
         keyboard_string = textValue[i];
+        textCursorFrame = 0;
     }
 }
 </string>
@@ -330,6 +339,12 @@ for ( var i = 0; i &lt; textCount; ++i ) {
     draw_set_color( c_black );
     draw_text( px, py, textValue[i] );
     draw_set_color( c_white );
+    
+    if ( textActive == i ) {
+        draw_sprite( textCursorImg, floor( textCursorFrame ),
+            ( px + string_width( textValue[i] ) ), py
+        );
+    }
 }
 </string>
           </argument>
