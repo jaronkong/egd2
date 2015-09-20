@@ -71,70 +71,26 @@ var tPosY = 130;
 var tOffX = 135;
 var tOffY = 136;
 
-linkIcon[linkCount] = file_spr;
-linkPosX[linkCount] = tPosX;
-linkPosY[linkCount] = tPosY;
-linkObject[linkCount] = windowFileAnnie;
-++linkCount;
+var tWindow = false;
+tWindow[0, 0] = windowFileAnnie;
+tWindow[1, 0] = windowFileDocument1;
+tWindow[2, 0] = windowFileDocument2;
+tWindow[3, 0] = windowFileMailTo;
+tWindow[0, 1] = windowFileOutline;
+tWindow[1, 1] = windowFilePasswords;
+tWindow[2, 1] = windowFileTerm;
+tWindow[3, 1] = windowFileInfo;
 
-tPosX += tOffX;
-
-linkIcon[linkCount] = file_spr;
-linkPosX[linkCount] = tPosX;
-linkPosY[linkCount] = tPosY;
-linkObject[linkCount] = windowFileDocument1;
-++linkCount;
-
-tPosX += tOffX;
-
-linkIcon[linkCount] = file_spr;
-linkPosX[linkCount] = tPosX;
-linkPosY[linkCount] = tPosY;
-linkObject[linkCount] = windowFileDocument2;
-++linkCount;
-
-tPosX += tOffX;
-
-linkIcon[linkCount] = file_spr;
-linkPosX[linkCount] = tPosX;
-linkPosY[linkCount] = tPosY;
-linkObject[linkCount] = windowFileMailTo;
-++linkCount;
-
-tPosX += tOffX;
-
-tPosX -= ( tOffX * linkCount );
-tPosY += tOffY;
-
-linkIcon[linkCount] = file_spr;
-linkPosX[linkCount] = tPosX;
-linkPosY[linkCount] = tPosY;
-linkObject[linkCount] = windowFileOutline;
-++linkCount;
-
-tPosX += tOffX;
-
-linkIcon[linkCount] = file_spr;
-linkPosX[linkCount] = tPosX;
-linkPosY[linkCount] = tPosY;
-linkObject[linkCount] = windowFilePasswords;
-++linkCount;
-
-tPosX += tOffX;
-
-linkIcon[linkCount] = file_spr;
-linkPosX[linkCount] = tPosX;
-linkPosY[linkCount] = tPosY;
-linkObject[linkCount] = windowFileTerm;
-++linkCount;
-
-tPosX += tOffX;
-
-linkIcon[linkCount] = file_spr;
-linkPosX[linkCount] = tPosX;
-linkPosY[linkCount] = tPosY;
-linkObject[linkCount] = windowFileInfo;
-++linkCount;
+for ( var i = 0; i &lt; array_height_2d( tWindow ); ++i ) {
+    for ( var j = 0; j &lt; array_length_2d( tWindow, i ); ++j ) {
+        linkIcon[linkCount] = file_spr;
+        linkPosX[linkCount] = tPosX + ( tOffX * i );
+        linkPosY[linkCount] = tPosY + ( tOffY * j );
+        linkAction[linkCount] = tWindow[i, j];
+        linkType[linkCount] = asset_object;
+        ++linkCount;
+    }
+}
 </string>
           </argument>
         </arguments>

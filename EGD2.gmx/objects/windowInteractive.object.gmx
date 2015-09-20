@@ -46,7 +46,8 @@ linkCount = 0;
 linkIcon = false;
 linkPosX = false;
 linkPosY = false;
-linkObject = false;
+linkAction = false;
+linkType = false;
 </string>
           </argument>
         </arguments>
@@ -89,9 +90,21 @@ for ( var i = 0; i &lt; linkCount; ++i ) {
     var px = ( x + thickLeft + linkPosX[i] );
     var py = ( y + thickTop + linkPosY[i] );
     if ( pointInSprite( mouseX, mouseY, linkIcon[i], px, py ) ) {
-        if ( object_exists( linkObject[i] ) ) {
-            audio_play_sound( click_sd, 1, false );
-            windowCreate( linkObject[i], px, py );
+        audio_play_sound( click_sd, 1, false );
+        switch ( linkType[i] ) {
+        case asset_object:
+            if ( object_exists( linkAction[i] ) ) {
+                windowCreate( linkAction[i], px, py );
+            }
+            break;
+        case asset_script:
+            if ( script_exists( linkAction[i] ) ) {
+                script_execute( linkAction[i], id );
+            }
+            break;
+        case asset_unknown:
+            event_user( linkAction[i] );
+            break;
         }
     }
 }
