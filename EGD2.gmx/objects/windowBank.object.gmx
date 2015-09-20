@@ -63,19 +63,76 @@ back = windowBank_bg;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Set textboxes
+            <string>///Create textboxes
 
 textImage[textCount] = bankUsername_spr;
-textPosX[textCount] = 128;
-textPosY[textCount] = 128;
+textPosX[textCount] = 122;
+textPosY[textCount] = 285;
 textValue[textCount] = "";
 ++textCount;
 
 textImage[textCount] = bankPassword_spr;
-textPosX[textCount] = 128;
-textPosY[textCount] = 256;
+textPosX[textCount] = 122;
+textPosY[textCount] = 360;
 textValue[textCount] = "";
 ++textCount;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Create the button
+
+linkIcon[linkCount] = bankLogin_spr;
+linkPosX[linkCount] = 189;
+linkPosY[linkCount] = 464;
+linkAction[linkCount] = 15;
+linkType[linkCount] = LinkType.Event;
+++linkCount;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Login button pressed
+
+if ( textValue[0] == "alanz" ) {
+    if ( textValue[1] == "moneymoney3" ) {
+        show_debug_message( "You win!" );
+    }
+}
 </string>
           </argument>
         </arguments>

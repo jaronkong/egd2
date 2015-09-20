@@ -38,6 +38,7 @@
     <sprite>sprites\file_spr</sprite>
     <sprite>sprites\bankUsername_spr</sprite>
     <sprite>sprites\bankPassword_spr</sprite>
+    <sprite>sprites\bankLogin_spr</sprite>
     <sprite>sprites\textCursor_spr</sprite>
   </sprites>
   <backgrounds name="background">
