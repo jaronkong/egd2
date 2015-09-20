@@ -4,7 +4,14 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\ambience_bgm</sound>
+    <sound>sound\click_sd</sound>
+    <sound>sound\steps_sd</sound>
+    <sound>sound\openWindow_sd</sound>
+    <sound>sound\openDoor_sd</sound>
+    <sound>sound\closeWindow_sd</sound>
+  </sounds>
   <sprites name="sprites">
     <sprites name="window">
       <sprite>sprites\winTop_spr</sprite>
@@ -30,6 +37,8 @@
   <backgrounds name="background">
     <background>background\background0</background>
     <background>background\background1</background>
+    <background>background\doorClosed_bg</background>
+    <background>background\doorOpen_bg</background>
     <background>background\windowExplorer_bg</background>
   </backgrounds>
   <paths name="paths"/>
@@ -43,6 +52,8 @@
     <objects name="SceneObjects">
       <object>objects\sceneObject</object>
       <object>objects\roomTransition</object>
+      <object>objects\frontDoorTransition</object>
+      <object>objects\frontDoorOpen</object>
       <object>objects\windowShow</object>
     </objects>
     <object>objects\mainController</object>
@@ -53,6 +64,7 @@
     </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\FrontDoor_rm</room>
     <room>rooms\Main_rm</room>
     <room>rooms\Space_rm</room>
   </rooms>
