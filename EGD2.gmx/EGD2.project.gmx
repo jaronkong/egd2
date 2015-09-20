@@ -40,6 +40,16 @@
     <background>background\doorClosed_bg</background>
     <background>background\doorOpen_bg</background>
     <background>background\windowExplorer_bg</background>
+    <backgrounds name="Files">
+      <background>background\fileAnnie_bg</background>
+      <background>background\fileDocument1_bg</background>
+      <background>background\fileDocument2_bg</background>
+      <background>background\fileInfo_bg</background>
+      <background>background\fileMailTo_bg</background>
+      <background>background\fileOutline_bg</background>
+      <background>background\filePasswords_bg</background>
+      <background>background\fileTerm_bg</background>
+    </backgrounds>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -59,8 +69,21 @@
     <object>objects\mainController</object>
     <objects name="Windows">
       <object>objects\window</object>
-      <object>objects\windowInteractive</object>
-      <object>objects\windowExplorer</object>
+      <objects name="Interactive">
+        <object>objects\windowInteractive</object>
+        <object>objects\windowExplorer</object>
+      </objects>
+      <objects name="FileViewer">
+        <object>objects\windowFile</object>
+        <object>objects\windowFileAnnie</object>
+        <object>objects\windowFileDocument1</object>
+        <object>objects\windowFileDocument2</object>
+        <object>objects\windowFileInfo</object>
+        <object>objects\windowFileMailTo</object>
+        <object>objects\windowFileOutline</object>
+        <object>objects\windowFilePasswords</object>
+        <object>objects\windowFileTerm</object>
+      </objects>
     </objects>
   </objects>
   <rooms name="rooms">
