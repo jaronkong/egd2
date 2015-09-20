@@ -48,6 +48,12 @@ linkPosX = false;
 linkPosY = false;
 linkAction = false;
 linkType = false;
+
+enum LinkType {
+    Window,
+    Script,
+    Event
+};
 </string>
           </argument>
         </arguments>
@@ -92,17 +98,17 @@ for ( var i = 0; i &lt; linkCount; ++i ) {
     if ( pointInSprite( mouseX, mouseY, linkIcon[i], px, py ) ) {
         audio_play_sound( click_sd, 1, false );
         switch ( linkType[i] ) {
-        case asset_object:
+        case LinkType.Window:
             if ( object_exists( linkAction[i] ) ) {
                 windowCreate( linkAction[i], px, py );
             }
             break;
-        case asset_script:
+        case LinkType.Script:
             if ( script_exists( linkAction[i] ) ) {
                 script_execute( linkAction[i], id );
             }
             break;
-        case asset_unknown:
+        case LinkType.Event:
             event_user( linkAction[i] );
             break;
         }

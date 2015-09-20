@@ -87,7 +87,7 @@ for ( var i = 0; i &lt; array_height_2d( tWindow ); ++i ) {
         linkPosX[linkCount] = tPosX + ( tOffX * i );
         linkPosY[linkCount] = tPosY + ( tOffY * j );
         linkAction[linkCount] = tWindow[i, j];
-        linkType[linkCount] = asset_object;
+        linkType[linkCount] = LinkType.Window;
         ++linkCount;
     }
 }
