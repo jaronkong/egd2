@@ -36,10 +36,10 @@
       <sprite>sprites\cursorDefault_spr</sprite>
     </sprites>
     <sprite>sprites\file_spr</sprite>
-    <sprites name="Realworld">
-      <sprite>sprites\file_cabinet</sprite>
-      <sprite>sprites\safe</sprite>
-    </sprites>
+    <sprite>sprites\bankUsername_spr</sprite>
+    <sprite>sprites\bankPassword_spr</sprite>
+    <sprite>sprites\bankLogin_spr</sprite>
+    <sprite>sprites\textCursor_spr</sprite>
   </sprites>
   <backgrounds name="background">
     <backgrounds name="Scenes">
@@ -97,8 +97,6 @@
         <object>objects\windowFileTerm</object>
       </objects>
     </objects>
-    <object>objects\files_placeholder</object>
-    <object>objects\safe_placeholder</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\FrontDoor_rm</room>

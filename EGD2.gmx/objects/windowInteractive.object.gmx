@@ -48,6 +48,164 @@ linkPosX = false;
 linkPosY = false;
 linkAction = false;
 linkType = false;
+
+enum LinkType {
+    Window,
+    Script,
+    Event
+};
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Define text boxes
+
+textCount = 0;
+
+textImage = false;
+textPosX = false;
+textPosY = false;
+textValue = false;
+
+textActive = -1;
+
+textCursorImg = textCursor_spr;
+textCursorFrame = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Deselect text box on mouse click
+
+if ( mouse_check_button_pressed( mb_left ) ) {
+    textActive = -1;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Textbox entry
+
+if ( textActive &gt;= 0 ) {
+    keyboard_string = string_copy( keyboard_string, 1, 15 );
+    textValue[textActive] = keyboard_string;
+}
+
+textCursorFrame += ( 1.5 / room_speed );
+if ( textCursorFrame &gt;= sprite_get_number( textCursorImg ) ) {
+    textCursorFrame -= sprite_get_number( textCursorImg );
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Debug moving stuff around
+
+if ( false ) {
+    var tIndex = 0;
+    var tChanged = false;
+    
+    if ( keyboard_check_pressed( vk_left ) ) {
+        linkPosX[tIndex] -= 1;
+        tChanged = true;
+    }
+    if ( keyboard_check_pressed( vk_right ) ) {
+        linkPosX[tIndex] += 1;
+        tChanged = true;
+    }
+    if ( keyboard_check_pressed( vk_up ) ) {
+        linkPosY[tIndex] -= 1;
+        tChanged = true;
+    }
+    if ( keyboard_check_pressed( vk_down ) ) {
+        linkPosY[tIndex] += 1;
+        tChanged = true;
+    }
+    
+    if ( tChanged ) {
+        show_debug_message( string(linkPosX[tIndex]) + " " + string(linkPosY[tIndex]) );
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -92,20 +250,51 @@ for ( var i = 0; i &lt; linkCount; ++i ) {
     if ( pointInSprite( mouseX, mouseY, linkIcon[i], px, py ) ) {
         audio_play_sound( click_sd, 1, false );
         switch ( linkType[i] ) {
-        case asset_object:
+        case LinkType.Window:
             if ( object_exists( linkAction[i] ) ) {
                 windowCreate( linkAction[i], px, py );
             }
             break;
-        case asset_script:
+        case LinkType.Script:
             if ( script_exists( linkAction[i] ) ) {
                 script_execute( linkAction[i], id );
             }
             break;
-        case asset_unknown:
+        case LinkType.Event:
             event_user( linkAction[i] );
             break;
         }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Check for text box press
+
+for ( var i = 0; i &lt; textCount; ++i ) {
+    var px = ( x + thickLeft + textPosX[i] );
+    var py = ( y + thickTop + textPosY[i] );
+    if ( pointInSprite( mouseX, mouseY, textImage[i], px, py ) ) {
+        textActive = i;
+        keyboard_string = textValue[i];
+        textCursorFrame = 0;
     }
 }
 </string>
@@ -156,6 +345,53 @@ for ( var i = 0; i &lt; linkCount; ++i ) {
         }
     }
     draw_sprite( linkIcon[i], tIndex, px, py );
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Draw text boxes
+
+draw_set_halign( fa_left );
+draw_set_valign( fa_middle );
+
+for ( var i = 0; i &lt; textCount; ++i ) {
+    var px = ( x + thickLeft + textPosX[i] );
+    var py = ( y + thickTop + textPosY[i] );
+    
+    var tIndex = ( textActive == i );
+    if ( pointInSprite( mouseX, mouseY, textImage[i], px, py ) ) {
+        if ( mouseOver ) {
+            tIndex = 1;
+        }
+    }
+    draw_sprite( textImage[i], tIndex, px, py );
+
+    draw_set_color( c_black );
+    draw_text( px, py, textValue[i] );
+    draw_set_color( c_white );
+    
+    if ( textActive == i ) {
+        draw_sprite( textCursorImg, floor( textCursorFrame ),
+            ( px + string_width( textValue[i] ) ), py
+        );
+    }
 }
 </string>
           </argument>
