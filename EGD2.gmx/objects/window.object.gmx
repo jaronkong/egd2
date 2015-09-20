@@ -189,16 +189,16 @@ back = noone;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Keep window onscreen
+            <string>///Update window size
 
-x = round( clamp( x, 0, ( display_get_gui_width( ) - width ) ) );
-y = round( clamp( y, 0, ( display_get_gui_height( ) - thickTop ) ) );
+if ( background_exists( back ) ) {
+    width = ( thickLeft + background_get_width( back ) + thickRight - 1 );
+    height = ( thickTop + background_get_height( back ) + thickBottom - 1 );
+}
 </string>
           </argument>
         </arguments>
       </action>
-    </event>
-    <event eventtype="3" enumb="1">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -215,12 +215,10 @@ y = round( clamp( y, 0, ( display_get_gui_height( ) - thickTop ) ) );
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Update window size
+            <string>///Keep window onscreen
 
-if ( background_exists( back ) ) {
-    width = ( thickLeft + background_get_width( back ) + thickRight - 1 );
-    height = ( thickTop + background_get_height( back ) + thickBottom - 1 );
-}
+x = round( clamp( x, 0, ( display_get_gui_width( ) - width ) ) );
+y = round( clamp( y, 0, ( display_get_gui_height( ) - thickTop ) ) );
 </string>
           </argument>
         </arguments>
