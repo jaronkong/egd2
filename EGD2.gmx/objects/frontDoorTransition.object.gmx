@@ -2,7 +2,7 @@
 <object>
   <spriteName>gun3_spr</spriteName>
   <solid>0</solid>
-  <visible>-1</visible>
+  <visible>0</visible>
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>sceneObject</parentName>
@@ -42,13 +42,15 @@
             <string>///Setup
 
 zoom = 1.25;
-destinationRoom = Main_rm;
+destinationRoom = Hall_rm;
 clicked = false;
 
 
 cursorImage = cursorMove_spr;
 
+image_yscale = 10;
 
+image_xscale = 5;
 
 </string>
           </argument>

@@ -13,7 +13,7 @@
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>1500</width>
-  <height>1000</height>
-  <data>images\background1.png</data>
+  <width>1920</width>
+  <height>1080</height>
+  <data>images\hallEnd_bg.png</data>
 </background>

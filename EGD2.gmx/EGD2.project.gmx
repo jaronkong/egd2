@@ -28,6 +28,9 @@
     <sprite>sprites\gun_spr</sprite>
     <sprite>sprites\gun2_spr</sprite>
     <sprite>sprites\gun3_spr</sprite>
+    <sprites name="Elements">
+      <sprite>sprites\sprite16</sprite>
+    </sprites>
     <sprites name="Cursor">
       <sprite>sprites\cursorMove_spr</sprite>
       <sprite>sprites\cursorDefault_spr</sprite>
@@ -37,10 +40,13 @@
     <sprite>sprites\bankPassword_spr</sprite>
   </sprites>
   <backgrounds name="background">
-    <background>background\background0</background>
-    <background>background\background1</background>
-    <background>background\doorClosed_bg</background>
-    <background>background\doorOpen_bg</background>
+    <backgrounds name="Scenes">
+      <background>background\doorOpen_bg</background>
+      <background>background\doorClosed_bg</background>
+      <background>background\hallStart_bg</background>
+      <background>background\hallEnd_bg</background>
+      <background>background\office_bg</background>
+    </backgrounds>
     <background>background\windowExplorer_bg</background>
     <backgrounds name="Files">
       <background>background\fileAnnie_bg</background>
@@ -93,7 +99,9 @@
   <rooms name="rooms">
     <room>rooms\FrontDoor_rm</room>
     <room>rooms\Main_rm</room>
-    <room>rooms\Space_rm</room>
+    <room>rooms\Hall_rm</room>
+    <room>rooms\Office_rm</room>
+    <room>rooms\HallBack_rm</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

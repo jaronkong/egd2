@@ -2,7 +2,7 @@
 <object>
   <spriteName>gun3_spr</spriteName>
   <solid>0</solid>
-  <visible>-1</visible>
+  <visible>0</visible>
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>sceneObject</parentName>
@@ -42,7 +42,7 @@
             <string>///Setup
 
 zoom = 1.25;
-destinationRoom = Space_rm;
+destinationRoom = Hall_rm;
 clicked = false;
 
 
