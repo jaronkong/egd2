@@ -65,10 +65,75 @@ back = windowExplorer_bg;
             <kind>1</kind>
             <string>///Place links
 
+var tPosX = 148;
+var tPosY = 130;
+
+var tOffX = 135;
+var tOffY = 136;
+
 linkIcon[linkCount] = file_spr;
-linkPosX[linkCount] = 140;
-linkPosY[linkCount] = 128;
+linkPosX[linkCount] = tPosX;
+linkPosY[linkCount] = tPosY;
 linkObject[linkCount] = windowFileAnnie;
+++linkCount;
+
+tPosX += tOffX;
+
+linkIcon[linkCount] = file_spr;
+linkPosX[linkCount] = tPosX;
+linkPosY[linkCount] = tPosY;
+linkObject[linkCount] = windowFileDocument1;
+++linkCount;
+
+tPosX += tOffX;
+
+linkIcon[linkCount] = file_spr;
+linkPosX[linkCount] = tPosX;
+linkPosY[linkCount] = tPosY;
+linkObject[linkCount] = windowFileDocument2;
+++linkCount;
+
+tPosX += tOffX;
+
+linkIcon[linkCount] = file_spr;
+linkPosX[linkCount] = tPosX;
+linkPosY[linkCount] = tPosY;
+linkObject[linkCount] = windowFileMailTo;
+++linkCount;
+
+tPosX += tOffX;
+
+tPosX -= ( tOffX * linkCount );
+tPosY += tOffY;
+
+linkIcon[linkCount] = file_spr;
+linkPosX[linkCount] = tPosX;
+linkPosY[linkCount] = tPosY;
+linkObject[linkCount] = windowFileOutline;
+++linkCount;
+
+tPosX += tOffX;
+
+linkIcon[linkCount] = file_spr;
+linkPosX[linkCount] = tPosX;
+linkPosY[linkCount] = tPosY;
+linkObject[linkCount] = windowFilePasswords;
+++linkCount;
+
+tPosX += tOffX;
+
+linkIcon[linkCount] = file_spr;
+linkPosX[linkCount] = tPosX;
+linkPosY[linkCount] = tPosY;
+linkObject[linkCount] = windowFileTerm;
+++linkCount;
+
+tPosX += tOffX;
+
+linkIcon[linkCount] = file_spr;
+linkPosX[linkCount] = tPosX;
+linkPosY[linkCount] = tPosY;
+linkObject[linkCount] = windowFileInfo;
 ++linkCount;
 </string>
           </argument>

@@ -41,7 +41,7 @@
             <kind>1</kind>
             <string>///Set file values
 
-title = "Annie.txt";
+title = "annie.txt";
 back = fileAnnie_bg;
 </string>
           </argument>
