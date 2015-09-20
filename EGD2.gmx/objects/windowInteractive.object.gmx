@@ -91,7 +91,7 @@ for ( var i = 0; i &lt; linkCount; ++i ) {
     if ( pointInSprite( mouseX, mouseY, linkIcon[i], px, py ) ) {
         if ( object_exists( linkObject[i] ) ) {
             audio_play_sound( click_sd, 1, false );
-            instance_create( px, py, linkObject[i] );
+            windowCreate( linkObject[i], px, py );
         }
     }
 }
