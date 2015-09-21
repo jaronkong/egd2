@@ -44,8 +44,9 @@
 zoom = 1.25;
 destinationRoom = Main_rm;
 clicked = false;
+active = true;
 
-
+creationWindow = window;
 cursorImage = cursorInteract_spr;
 
 
@@ -83,7 +84,53 @@ instance_destroy();
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Open door
+
+if ( active ) {
+    active = false;
+    audio_play_sound( openDoor_sd, 1, false );
+    alarm[ 0 ] = room_speed * 0.95;
+    
+
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -102,10 +149,9 @@ instance_destroy();
             <kind>1</kind>
             <string>///Clicked
 
-if ( !clicked ) {
-    clicked = true;
-    audio_play_sound( openDoor_sd, 1, false );
-    alarm[ 0 ] = room_speed * 0.95;
+if ( active ) {
+    audio_play_sound( openWindow_sd, 1, false );
+    windowCreate( creationWindow, window_get_x(), window_get_y() );
     
 
 }
