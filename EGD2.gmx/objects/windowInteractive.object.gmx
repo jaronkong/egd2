@@ -368,12 +368,17 @@ for ( var i = 0; i &lt; linkCount; ++i ) {
             <kind>1</kind>
             <string>///Draw text boxes
 
+draw_set_font( winText_ft );
 draw_set_halign( fa_left );
 draw_set_valign( fa_middle );
 
 for ( var i = 0; i &lt; textCount; ++i ) {
     var px = ( x + thickLeft + textPosX[i] );
     var py = ( y + thickTop + textPosY[i] );
+    var tString = textValue[i];
+    if ( textHidden[i] ) {
+        tString = string_repeat( chr( 8226 ), string_length( tString ) );
+    }
     
     var tIndex = ( textActive == i );
     if ( pointInSprite( mouseX, mouseY, textImage[i], px, py ) ) {

@@ -71,6 +71,10 @@
     <script>scripts\windowCreate.gml</script>
     <script>scripts\pointInSprite.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\winTitle_ft</font>
+    <font>fonts\winText_ft</font>
+  </fonts>
   <objects name="objects">
     <object>objects\sceneController</object>
     <object>objects\endSequenceFader</object>
