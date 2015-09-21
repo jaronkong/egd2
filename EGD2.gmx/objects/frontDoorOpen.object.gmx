@@ -46,7 +46,7 @@ destinationRoom = Main_rm;
 clicked = false;
 
 
-cursorImage = cursorMove_spr;
+cursorImage = cursorInteract_spr;
 
 
 
@@ -74,7 +74,7 @@ cursorImage = cursorMove_spr;
             <kind>1</kind>
             <string>///Door opened
 
-background_index = doorOpen_bg;
+background_index[1] = doorOpen_bg;
 instance_create( x, y, frontDoorTransition );
 instance_destroy();
 

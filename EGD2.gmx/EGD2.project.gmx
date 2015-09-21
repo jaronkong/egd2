@@ -29,10 +29,12 @@
     <sprite>sprites\gun2_spr</sprite>
     <sprite>sprites\gun3_spr</sprite>
     <sprites name="Elements">
-      <sprite>sprites\sprite16</sprite>
+      <sprite>sprites\fileCabinet_spr</sprite>
+      <sprite>sprites\safe_spr</sprite>
     </sprites>
     <sprites name="Cursor">
       <sprite>sprites\cursorMove_spr</sprite>
+      <sprite>sprites\cursorInteract_spr</sprite>
       <sprite>sprites\cursorDefault_spr</sprite>
     </sprites>
     <sprite>sprites\file_spr</sprite>
@@ -40,8 +42,6 @@
     <sprite>sprites\bankPassword_spr</sprite>
     <sprite>sprites\bankLogin_spr</sprite>
     <sprite>sprites\textCursor_spr</sprite>
-    <sprite>sprites\file_cabinet</sprite>
-    <sprite>sprites\safe</sprite>
   </sprites>
   <backgrounds name="background">
     <backgrounds name="Scenes">
@@ -50,6 +50,7 @@
       <background>background\hallStart_bg</background>
       <background>background\hallEnd_bg</background>
       <background>background\office_bg</background>
+      <background>background\sky_bg</background>
     </backgrounds>
     <background>background\windowExplorer_bg</background>
     <backgrounds name="Files">
@@ -72,12 +73,15 @@
   </scripts>
   <objects name="objects">
     <object>objects\sceneController</object>
+    <object>objects\endSequenceFader</object>
     <objects name="SceneObjects">
       <object>objects\sceneObject</object>
       <object>objects\roomTransition</object>
       <object>objects\frontDoorTransition</object>
       <object>objects\frontDoorOpen</object>
       <object>objects\windowShow</object>
+      <object>objects\fileCabinet</object>
+      <object>objects\safe</object>
     </objects>
     <object>objects\mainController</object>
     <objects name="Windows">
@@ -101,6 +105,7 @@
     </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\End_rm</room>
     <room>rooms\FrontDoor_rm</room>
     <room>rooms\Main_rm</room>
     <room>rooms\Hall_rm</room>

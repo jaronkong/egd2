@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>///Setup
 
+activeBackground = 1;
+
 blackoutAlpha = 1;
 targetBlackoutAlpha = 0;
 blackoutAlphaRate = 0.01;
@@ -130,8 +132,8 @@ if ( targetRoom != noone &amp;&amp; room_exists( targetRoom ) ) {
     }
     
     //Scale background
-    background_xscale = tCurrentZoom;
-    background_yscale = tCurrentZoom;
+    background_xscale[activeBackground] = tCurrentZoom;
+    background_yscale[activeBackground] = tCurrentZoom;
     
     //Check for when close enough to transition
     if ( blackoutAlpha &gt; 1 - alphaTolerance ) {
@@ -139,8 +141,8 @@ if ( targetRoom != noone &amp;&amp; room_exists( targetRoom ) ) {
     }
 }
 
-background_x = - (background_width * background_xscale - room_width) / 2;
-background_y = - (background_height * background_yscale - room_height) / 2;
+background_x[activeBackground] = - (background_width[activeBackground] * background_xscale[activeBackground] - room_width) / 2;
+background_y[activeBackground] = - (background_height[activeBackground] * background_yscale[activeBackground] - room_height) / 2;
 
 </string>
           </argument>
