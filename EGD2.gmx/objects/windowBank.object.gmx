@@ -69,12 +69,14 @@ textImage[textCount] = bankUsername_spr;
 textPosX[textCount] = 122;
 textPosY[textCount] = 285;
 textValue[textCount] = "";
+textHidden[textCount] = false;
 ++textCount;
 
 textImage[textCount] = bankPassword_spr;
 textPosX[textCount] = 122;
 textPosY[textCount] = 360;
 textValue[textCount] = "";
+textHidden[textCount] = true;
 ++textCount;
 </string>
           </argument>

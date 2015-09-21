@@ -82,6 +82,7 @@ textImage = false;
 textPosX = false;
 textPosY = false;
 textValue = false;
+textHidden = false;
 
 textActive = -1;
 
@@ -389,12 +390,12 @@ for ( var i = 0; i &lt; textCount; ++i ) {
     draw_sprite( textImage[i], tIndex, px, py );
 
     draw_set_color( c_black );
-    draw_text( px, py, textValue[i] );
+    draw_text( px, py, tString );
     draw_set_color( c_white );
     
     if ( textActive == i ) {
         draw_sprite( textCursorImg, floor( textCursorFrame ),
-            ( px + string_width( textValue[i] ) ), py
+            ( px + string_width( tString ) ), py
         );
     }
 }
