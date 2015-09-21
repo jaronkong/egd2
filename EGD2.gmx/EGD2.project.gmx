@@ -105,12 +105,12 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\End_rm</room>
     <room>rooms\FrontDoor_rm</room>
     <room>rooms\Main_rm</room>
     <room>rooms\Hall_rm</room>
     <room>rooms\Office_rm</room>
     <room>rooms\HallBack_rm</room>
+    <room>rooms\End_rm</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
