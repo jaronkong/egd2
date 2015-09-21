@@ -81,6 +81,7 @@ else if ( blackoutAlpha &gt; targetBlackoutAlpha ) {
     blackoutAlpha -= blackoutAlphaRate;
     if ( blackoutAlpha &lt; targetBlackoutAlpha + alphaTolerance ) {
         blackoutAlpha = targetBlackoutAlpha;
+
     }
 }
 
@@ -108,9 +109,15 @@ else if ( blackoutAlpha &gt; targetBlackoutAlpha ) {
 
 if ( currentBg &lt; numBgs - 1 ) {
     backgroundTimer -= 1;
+    
     if ( backgroundTimer &lt;= 0 ) {
         backgroundTimer = backgroundDelay;
         targetBlackoutAlpha = 1;
+   
+        if ( currentBg == numBgs - 2 ) {
+            instance_create( 0, 0, noiseEffect );
+        }
+        
     }
 }
 

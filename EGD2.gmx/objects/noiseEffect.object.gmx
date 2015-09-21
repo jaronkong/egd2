@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-10</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -27,23 +27,55 @@
             <kind>1</kind>
             <string>///Setup
 
-activeBackground = 1;
+draw_set_color(c_white);
 
-blackoutAlpha = 1;
-targetBlackoutAlpha = 0;
-blackoutAlphaRate = 0.01;
-alphaTolerance = 0.05;
+samp_noise = shader_get_sampler_index( finalScreen_sdr, "iChannel1" );
 
-targetRoom = noone;
-transitionX = room_width/2;
-transitionY = room_height/2;
-zoom = 0.25; //relative amount for transition, less than one for zoom back
-transitionProgress = 0;
-transitionTween = 0.005;
+uni_time = shader_get_uniform(finalScreen_sdr,"iGlobalTime");
+var_time_var = 0;
 
+//uni_mouse_pos = shader_get_uniform(finalScreen_sdr,"mouse_pos");
+//var_mouse_pos_x = mouse_x - view_xview;
+//var_mouse_pos_y = mouse_y - view_yview;
 
-backgroundZoomReduceFactor = 0.5; //smaller numbers = less background zoom
+uni_resolution = shader_get_uniform(finalScreen_sdr,"resolution");
+var_resolution_x = view_wview;
+var_resolution_y = view_hview;
 
+uni_thresh = shader_get_uniform( finalScreen_sdr, "thresh" );
+var_thresh_block = 0;
+var_thresh_line = 0;
+
+shader_enabled = true;
+full_screen_effect = true;
+
+//alarm[0] = 180;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Setup pulse effect
+
+lifetime = room_speed * 3.0
+pulseRate = room_speed * 0.5;
+pulseTimer = 0;
 </string>
           </argument>
         </arguments>
@@ -66,21 +98,9 @@ backgroundZoomReduceFactor = 0.5; //smaller numbers = less background zoom
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Tween blackout
+            <string>///Update time
 
-if ( blackoutAlpha &lt; targetBlackoutAlpha ) {
-    blackoutAlpha += blackoutAlphaRate;
-    if ( blackoutAlpha &gt; targetBlackoutAlpha - alphaTolerance ) {
-        blackoutAlpha = targetBlackoutAlpha;
-    }
-}
-else if ( blackoutAlpha &gt; targetBlackoutAlpha ) {
-    blackoutAlpha -= blackoutAlphaRate;
-    if ( blackoutAlpha &lt; targetBlackoutAlpha + alphaTolerance ) {
-        blackoutAlpha = targetBlackoutAlpha;
-    }
-}
-
+var_time_var += ( 1/room_speed );
 </string>
           </argument>
         </arguments>
@@ -101,48 +121,49 @@ else if ( blackoutAlpha &gt; targetBlackoutAlpha ) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Room Transition
+            <string>///Decrease thresholds over time
 
-if ( targetRoom != noone &amp;&amp; room_exists( targetRoom ) ) {
-    targetBlackoutAlpha = 1;
-    transitionProgress = lerp( transitionProgress, 1, transitionTween );
-    
-    var tCurrentZoom = 1 + abs((1 - zoom) * transitionProgress);
-    if ( zoom &lt; 1 ) {
-        tCurrentZoom = 1 - abs(zoom * transitionProgress);
-    }
-    
-    with ( sceneObject ) {
-        var tZoomDir = point_direction( other.transitionX, other.transitionY,
-                                            originX, originY );
-        var tZoomDist = point_distance( other.transitionX, other.transitionY,
-                                            originX, originY );
-        
-        // Set position
-        tZoomDist = (tZoomDist * tCurrentZoom * relDepth - tZoomDist) * other.transitionProgress;
-        x = originX + lengthdir_x( tZoomDist, tZoomDir );
-        y = originY + lengthdir_y( tZoomDist, tZoomDir );
-        
-        // Adjust image scale
-        image_xscale = tCurrentZoom;
-        image_yscale = tCurrentZoom;
-        
-        //x -= sprite_get_width( sprite_index ) * tCurrentZoom / 2 * sign( other.zoom );
-        //y -= sprite_get_height( sprite_index ) * tCurrentZoom / 2 * sign( other.zoom );
-    }
-    
-    //Scale background
-    background_xscale[activeBackground] = tCurrentZoom;
-    background_yscale[activeBackground] = tCurrentZoom;
-    
-    //Check for when close enough to transition
-    if ( blackoutAlpha &gt; 1 - alphaTolerance ) {
-        room_goto( targetRoom );
-    }
+var t = 1;
+
+var_thresh_block = max( var_thresh_block - ( 0.005 * t ), 0 );
+var_thresh_line = max( var_thresh_line - ( 0.01 * t ), 0 );
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Pulse
+
+lifetime --;
+if ( lifetime &lt;= 0 ) {
+    instance_destroy();
 }
 
-background_x[activeBackground] = - (background_width[activeBackground] * background_xscale[activeBackground] - room_width) / 2;
-background_y[activeBackground] = - (background_height[activeBackground] * background_yscale[activeBackground] - room_height) / 2;
+pulseTimer --;
+
+if ( pulseTimer &lt;= 0 ) {
+    pulseTimer = pulseRate;
+    
+
+    var_thresh_block = 0.2;
+    var_thresh_line = 0.7;
+    
+}
 
 </string>
           </argument>
@@ -166,12 +187,23 @@ background_y[activeBackground] = - (background_height[activeBackground] * backgr
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw
+            <string>///Draw screen
 
-draw_set_color( c_black );
-draw_set_alpha( blackoutAlpha );
-
-draw_rectangle( 0, 0, window_get_width(), window_get_height(), false );
+if (shader_enabled) { 
+    shader_set(finalScreen_sdr);
+        var_resolution_x = view_wview;
+        var_resolution_y = view_hview;
+        texture_set_stage( samp_noise, sprite_get_texture( noise_spr, 0 ) );
+        texture_set_repeat_ext( samp_noise, true );
+        shader_set_uniform_f(uni_resolution, var_resolution_x, var_resolution_y);
+        shader_set_uniform_f( uni_time, var_time_var );
+        shader_set_uniform_f( uni_thresh, var_thresh_block, var_thresh_line );
+        if (full_screen_effect) {
+            draw_surface_stretched(application_surface,0,0,
+                display_get_gui_width(), display_get_gui_height());
+        }
+    shader_reset();
+}
 
 </string>
           </argument>
