@@ -71,6 +71,11 @@
     <script>scripts\transitionGotoRoom.gml</script>
     <script>scripts\windowCreate.gml</script>
     <script>scripts\pointInSprite.gml</script>
+    <scripts name="Events">
+      <script>scripts\eventOpenDoor.gml</script>
+      <script>scripts\eventOpenSafe.gml</script>
+      <script>scripts\eventTakeMoney.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\winTitle_ft</font>

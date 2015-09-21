@@ -21,5 +21,7 @@
   <height>347</height>
   <frames>
     <frame index="0">images\safe_spr_0.png</frame>
+    <frame index="1">images\safe_spr_1.png</frame>
+    <frame index="2">images\safe_spr_2.png</frame>
   </frames>
 </sprite>
