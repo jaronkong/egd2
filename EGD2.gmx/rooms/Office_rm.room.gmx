@@ -3,8 +3,8 @@
   <caption></caption>
   <width>1920</width>
   <height>1080</height>
-  <vsnap>16</vsnap>
-  <hsnap>16</hsnap>
+  <vsnap>8</vsnap>
+  <hsnap>8</hsnap>
   <isometric>0</isometric>
   <speed>120</speed>
   <persistent>0</persistent>
@@ -53,9 +53,9 @@
   <instances>
     <instance objName="sceneController" x="64" y="128" name="inst_195325FA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="mainController" x="64" y="160" name="inst_1FE8DFA8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="roomTransition" x="960" y="1040" name="inst_FD9E4F5D" locked="0" code="destinationRoom = HallBack_rm;&#xA;zoom = -0.25;&#xA;" scaleX="24.1777782440186" scaleY="0.376470595598221" colour="4294967295" rotation="0"/>
-    <instance objName="fileCabinet" x="1264" y="768" name="inst_BC39A845" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="safe" x="592" y="784" name="inst_A1F636DC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="roomTransition" x="976" y="1024" name="inst_FD9E4F5D" locked="0" code="destinationRoom = HallBack_rm;&#xA;zoom = -0.25;&#xA;" scaleX="24.1777782440186" scaleY="0.376470595598221" colour="4294967295" rotation="0"/>
+    <instance objName="fileCabinet" x="1432" y="736" name="inst_BC39A845" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="safe" x="536" y="752" name="inst_A1F636DC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
