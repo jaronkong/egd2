@@ -65,6 +65,7 @@
       <background>background\fileTerm_bg</background>
     </backgrounds>
     <background>background\windowBank_bg</background>
+    <background>background\windowLogin_bg</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -77,13 +78,13 @@
       <script>scripts\eventTakeMoney.gml</script>
     </scripts>
   </scripts>
+  <shaders name="shaders">
+    <shader type="GLSLES">shaders\finalScreen_sdr.shader</shader>
+  </shaders>
   <fonts name="fonts">
     <font>fonts\winTitle_ft</font>
     <font>fonts\winText_ft</font>
   </fonts>
-  <shaders name="shaders">
-    <shader type="GLSLES">shaders\finalScreen_sdr.shader</shader>
-  </shaders>
   <objects name="objects">
     <object>objects\sceneController</object>
     <object>objects\endSequenceFader</object>
@@ -101,6 +102,7 @@
       <object>objects\window</object>
       <objects name="Interactive">
         <object>objects\windowInteractive</object>
+        <object>objects\windowLogin</object>
         <object>objects\windowExplorer</object>
         <object>objects\windowBank</object>
       </objects>
