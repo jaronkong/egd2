@@ -71,7 +71,8 @@ cursorImage = cursorMove_spr;
             <string>///Clicked
 
 audio_play_sound( openWindow_sd, 1, false );
-windowCreate( creationWindow );
+windowCreate( creationWindow, window_get_x(), window_get_y() );
+
 
 </string>
           </argument>

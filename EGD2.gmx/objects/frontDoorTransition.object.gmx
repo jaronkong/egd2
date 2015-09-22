@@ -79,6 +79,9 @@ image_xscale = 5;
 if ( !clicked ) {
     clicked = true;
     audio_play_sound( steps_sd, 1, false );
+    if ( !audio_is_playing( ambience_bgm ) ) {
+        audio_play_sound( ambience_bgm, 1, true );
+    }
     transitionGotoRoom( destinationRoom, room_width/2, room_height/2, zoom );
 
 }

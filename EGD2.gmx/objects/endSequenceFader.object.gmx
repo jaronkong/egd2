@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-10</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -27,22 +27,20 @@
             <kind>1</kind>
             <string>///Setup
 
-activeBackground = 1;
-
 blackoutAlpha = 1;
 targetBlackoutAlpha = 0;
 blackoutAlphaRate = 0.01;
 alphaTolerance = 0.05;
 
-targetRoom = noone;
-transitionX = room_width/2;
-transitionY = room_height/2;
-zoom = 0.25; //relative amount for transition, less than one for zoom back
-transitionProgress = 0;
-transitionTween = 0.005;
+backgroundDelay = room_speed * 3;
+backgroundTimer = backgroundDelay;
 
-
-backgroundZoomReduceFactor = 0.5; //smaller numbers = less background zoom
+activeBackground = 1;
+currentBg = 0;
+numBgs = 0;
+bg[numBgs++] = sky_bg;
+bg[numBgs++] = doorClosed_bg;
+bg[numBgs++] = office_bg;
 
 </string>
           </argument>
@@ -72,12 +70,18 @@ if ( blackoutAlpha &lt; targetBlackoutAlpha ) {
     blackoutAlpha += blackoutAlphaRate;
     if ( blackoutAlpha &gt; targetBlackoutAlpha - alphaTolerance ) {
         blackoutAlpha = targetBlackoutAlpha;
+        targetBlackoutAlpha = 0;
+        currentBg ++;
+        if ( currentBg &lt; numBgs ) {
+            background_index[ activeBackground ] = bg[ currentBg ];
+        }
     }
 }
 else if ( blackoutAlpha &gt; targetBlackoutAlpha ) {
     blackoutAlpha -= blackoutAlphaRate;
     if ( blackoutAlpha &lt; targetBlackoutAlpha + alphaTolerance ) {
         blackoutAlpha = targetBlackoutAlpha;
+
     }
 }
 
@@ -101,48 +105,21 @@ else if ( blackoutAlpha &gt; targetBlackoutAlpha ) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Room Transition
+            <string>///Force background transition
 
-if ( targetRoom != noone &amp;&amp; room_exists( targetRoom ) ) {
-    targetBlackoutAlpha = 1;
-    transitionProgress = lerp( transitionProgress, 1, transitionTween );
+if ( currentBg &lt; numBgs - 1 ) {
+    backgroundTimer -= 1;
     
-    var tCurrentZoom = 1 + abs((1 - zoom) * transitionProgress);
-    if ( zoom &lt; 1 ) {
-        tCurrentZoom = 1 - abs(zoom * transitionProgress);
-    }
-    
-    with ( sceneObject ) {
-        var tZoomDir = point_direction( other.transitionX, other.transitionY,
-                                            originX, originY );
-        var tZoomDist = point_distance( other.transitionX, other.transitionY,
-                                            originX, originY );
+    if ( backgroundTimer &lt;= 0 ) {
+        backgroundTimer = backgroundDelay;
+        targetBlackoutAlpha = 1;
+   
+        if ( currentBg == numBgs - 2 ) {
+            instance_create( 0, 0, noiseEffect );
+        }
         
-        // Set position
-        tZoomDist = (tZoomDist * tCurrentZoom * relDepth - tZoomDist) * other.transitionProgress;
-        x = originX + lengthdir_x( tZoomDist, tZoomDir );
-        y = originY + lengthdir_y( tZoomDist, tZoomDir );
-        
-        // Adjust image scale
-        image_xscale = tCurrentZoom;
-        image_yscale = tCurrentZoom;
-        
-        //x -= sprite_get_width( sprite_index ) * tCurrentZoom / 2 * sign( other.zoom );
-        //y -= sprite_get_height( sprite_index ) * tCurrentZoom / 2 * sign( other.zoom );
-    }
-    
-    //Scale background
-    background_xscale[activeBackground] = tCurrentZoom;
-    background_yscale[activeBackground] = tCurrentZoom;
-    
-    //Check for when close enough to transition
-    if ( blackoutAlpha &gt; 1 - alphaTolerance ) {
-        room_goto( targetRoom );
     }
 }
-
-background_x[activeBackground] = - (background_width[activeBackground] * background_xscale[activeBackground] - room_width) / 2;
-background_y[activeBackground] = - (background_height[activeBackground] * background_yscale[activeBackground] - room_height) / 2;
 
 </string>
           </argument>

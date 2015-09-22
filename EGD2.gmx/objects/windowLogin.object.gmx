@@ -3,14 +3,28 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-10</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>windowInteractive</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
       <action>
         <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>603</id>
         <kind>7</kind>
         <userelative>0</userelative>
@@ -25,31 +39,79 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Setup
+            <string>///Set properties
 
-activeBackground = 1;
+title = "Welcome! - Cherri Home Edition";
+back = windowLogin_bg;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Create textboxes
 
-blackoutAlpha = 1;
-targetBlackoutAlpha = 0;
-blackoutAlphaRate = 0.01;
-alphaTolerance = 0.05;
+textImage[textCount] = bankUsername_spr;
+textPosX[textCount] = 122;
+textPosY[textCount] = 285;
+textValue[textCount] = "";
+textHidden[textCount] = false;
+++textCount;
 
-targetRoom = noone;
-transitionX = room_width/2;
-transitionY = room_height/2;
-zoom = 0.25; //relative amount for transition, less than one for zoom back
-transitionProgress = 0;
-transitionTween = 0.005;
+textImage[textCount] = bankPassword_spr;
+textPosX[textCount] = 122;
+textPosY[textCount] = 360;
+textValue[textCount] = "";
+textHidden[textCount] = true;
+++textCount;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Create the button
 
-
-backgroundZoomReduceFactor = 0.5; //smaller numbers = less background zoom
-
+linkIcon[linkCount] = bankLogin_spr;
+linkPosX[linkCount] = 189;
+linkPosY[linkCount] = 464;
+linkAction[linkCount] = 15;
+linkType[linkCount] = LinkType.Event;
+++linkCount;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="7" enumb="25">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -66,113 +128,13 @@ backgroundZoomReduceFactor = 0.5; //smaller numbers = less background zoom
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Tween blackout
+            <string>///Login button pressed
 
-if ( blackoutAlpha &lt; targetBlackoutAlpha ) {
-    blackoutAlpha += blackoutAlphaRate;
-    if ( blackoutAlpha &gt; targetBlackoutAlpha - alphaTolerance ) {
-        blackoutAlpha = targetBlackoutAlpha;
+if ( textValue[0] == "alanz" ) {
+    if ( textValue[1] == "moneymoney3" ) {
+        show_debug_message( "You win!" );
     }
 }
-else if ( blackoutAlpha &gt; targetBlackoutAlpha ) {
-    blackoutAlpha -= blackoutAlphaRate;
-    if ( blackoutAlpha &lt; targetBlackoutAlpha + alphaTolerance ) {
-        blackoutAlpha = targetBlackoutAlpha;
-    }
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Room Transition
-
-if ( targetRoom != noone &amp;&amp; room_exists( targetRoom ) ) {
-    targetBlackoutAlpha = 1;
-    transitionProgress = lerp( transitionProgress, 1, transitionTween );
-    
-    var tCurrentZoom = 1 + abs((1 - zoom) * transitionProgress);
-    if ( zoom &lt; 1 ) {
-        tCurrentZoom = 1 - abs(zoom * transitionProgress);
-    }
-    
-    with ( sceneObject ) {
-        var tZoomDir = point_direction( other.transitionX, other.transitionY,
-                                            originX, originY );
-        var tZoomDist = point_distance( other.transitionX, other.transitionY,
-                                            originX, originY );
-        
-        // Set position
-        tZoomDist = (tZoomDist * tCurrentZoom * relDepth - tZoomDist) * other.transitionProgress;
-        x = originX + lengthdir_x( tZoomDist, tZoomDir );
-        y = originY + lengthdir_y( tZoomDist, tZoomDir );
-        
-        // Adjust image scale
-        image_xscale = tCurrentZoom;
-        image_yscale = tCurrentZoom;
-        
-        //x -= sprite_get_width( sprite_index ) * tCurrentZoom / 2 * sign( other.zoom );
-        //y -= sprite_get_height( sprite_index ) * tCurrentZoom / 2 * sign( other.zoom );
-    }
-    
-    //Scale background
-    background_xscale[activeBackground] = tCurrentZoom;
-    background_yscale[activeBackground] = tCurrentZoom;
-    
-    //Check for when close enough to transition
-    if ( blackoutAlpha &gt; 1 - alphaTolerance ) {
-        room_goto( targetRoom );
-    }
-}
-
-background_x[activeBackground] = - (background_width[activeBackground] * background_xscale[activeBackground] - room_width) / 2;
-background_y[activeBackground] = - (background_height[activeBackground] * background_yscale[activeBackground] - room_height) / 2;
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Draw
-
-draw_set_color( c_black );
-draw_set_alpha( blackoutAlpha );
-
-draw_rectangle( 0, 0, window_get_width(), window_get_height(), false );
-
 </string>
           </argument>
         </arguments>
