@@ -36,6 +36,8 @@
       <sprite>sprites\cursorMove_spr</sprite>
       <sprite>sprites\cursorInteract_spr</sprite>
       <sprite>sprites\cursorDefault_spr</sprite>
+      <sprite>sprites\cursorForward_spr</sprite>
+      <sprite>sprites\CursorBackward_spr</sprite>
     </sprites>
     <sprite>sprites\file_spr</sprite>
     <sprite>sprites\bankUsername_spr</sprite>
