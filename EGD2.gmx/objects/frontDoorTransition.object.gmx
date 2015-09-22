@@ -46,7 +46,7 @@ destinationRoom = Hall_rm;
 clicked = false;
 
 
-cursorImage = cursorMove_spr;
+cursorImage = cursorForward_spr;
 
 image_yscale = 10;
 

@@ -132,7 +132,7 @@ linkType[linkCount] = LinkType.Event;
 
 if ( textValue[0] == "alanz" ) {
     if ( textValue[1] == "moneymoney3" ) {
-        show_debug_message( "You win!" );
+        eventOpenSafe();
     }
 }
 </string>

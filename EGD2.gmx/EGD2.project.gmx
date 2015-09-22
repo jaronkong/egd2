@@ -11,6 +11,8 @@
     <sound>sound\openWindow_sd</sound>
     <sound>sound\openDoor_sd</sound>
     <sound>sound\closeWindow_sd</sound>
+    <sound>sound\takeMoney_sd</sound>
+    <sound>sound\openSafe_sd</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="window">
@@ -37,7 +39,7 @@
       <sprite>sprites\cursorInteract_spr</sprite>
       <sprite>sprites\cursorDefault_spr</sprite>
       <sprite>sprites\cursorForward_spr</sprite>
-      <sprite>sprites\CursorBackward_spr</sprite>
+      <sprite>sprites\cursorBackward_spr</sprite>
     </sprites>
     <sprite>sprites\file_spr</sprite>
     <sprite>sprites\bankUsername_spr</sprite>
@@ -54,6 +56,10 @@
       <background>background\hallEnd_bg</background>
       <background>background\office_bg</background>
       <background>background\sky_bg</background>
+      <background>background\end1_bg</background>
+      <background>background\end2_bg</background>
+      <background>background\end3_bg</background>
+      <background>background\end4_bg</background>
     </backgrounds>
     <background>background\windowExplorer_bg</background>
     <backgrounds name="Files">

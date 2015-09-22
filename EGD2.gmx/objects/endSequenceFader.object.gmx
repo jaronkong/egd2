@@ -38,9 +38,10 @@ backgroundTimer = backgroundDelay;
 activeBackground = 1;
 currentBg = 0;
 numBgs = 0;
-bg[numBgs++] = sky_bg;
-bg[numBgs++] = doorClosed_bg;
-bg[numBgs++] = office_bg;
+bg[numBgs++] = end1_bg;
+bg[numBgs++] = end2_bg;
+bg[numBgs++] = end3_bg;
+bg[numBgs++] = end4_bg;
 
 </string>
           </argument>
