@@ -88,6 +88,9 @@ textActive = -1;
 
 textCursorImg = textCursor_spr;
 textCursorFrame = 0;
+
+textAlignH = fa_left;
+textAlignV = fa_middle
 </string>
           </argument>
         </arguments>
@@ -370,8 +373,8 @@ for ( var i = 0; i &lt; linkCount; ++i ) {
             <string>///Draw text boxes
 
 draw_set_font( winText_ft );
-draw_set_halign( fa_left );
-draw_set_valign( fa_middle );
+draw_set_halign( textAlignH );
+draw_set_valign( textAlignV );
 
 for ( var i = 0; i &lt; textCount; ++i ) {
     var px = ( x + thickLeft + textPosX[i] );
@@ -394,8 +397,15 @@ for ( var i = 0; i &lt; textCount; ++i ) {
     draw_set_color( c_white );
     
     if ( textActive == i ) {
-        draw_sprite( textCursorImg, floor( textCursorFrame ),
-            ( px + string_width( tString ) ), py
+        var tOffX = string_width( tString );
+        if ( textAlignH == fa_center ) {
+            tOffX /= 2;
+        } else if ( textAlignH == fa_right ) {
+            tOffX = 0;
+        }
+        draw_sprite( textCursorImg,
+            floor( textCursorFrame ),
+            ( px + tOffX ), py
         );
     }
 }
