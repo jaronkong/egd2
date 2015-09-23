@@ -62,9 +62,7 @@ if ( cursorImage != noone ) {
     var tCovered = false    
 
     with ( window ) {
-        if ( window_mouse_get_x() &gt; window_get_x() &amp;&amp; window_mouse_get_y() &lt; window_get_x() + width 
-            &amp;&amp; window_mouse_get_x() &gt; window_get_y() &amp;&amp; window_mouse_get_y() &lt; window_get_y() + height ) {
-            
+        if ( mouseOver ) {
             tCovered = true;
         }
     }    
