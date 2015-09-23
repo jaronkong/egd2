@@ -2,8 +2,8 @@
 
 var aWindowObject = argument[0];
 
-var aWindowX = x;
-var aWindowY = y;
+var aWindowX = display_get_gui_width()/2-256;
+var aWindowY = display_get_gui_height()/2-256;
 if ( argument_count > 1 ) {
     aWindowX = argument[1];
     aWindowY = argument[2];
