@@ -68,7 +68,7 @@ back = windowHackTool_bg;
 textAlignH = fa_right;
 
 textImage[textCount] = hackText_spr;
-textPosX[textCount] = 236;
+textPosX[textCount] = 244;
 textPosY[textCount] = 340;
 textValue[textCount] = "";
 textHidden[textCount] = false;
