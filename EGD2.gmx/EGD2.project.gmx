@@ -135,6 +135,7 @@
     <objects name="Effects">
       <object>objects\noiseEffect</object>
     </objects>
+    <object>objects\endTitleDrawer</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\FrontDoor_rm</room>
