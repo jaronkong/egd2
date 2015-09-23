@@ -49,6 +49,8 @@
     <sprite>sprites\noise_spr</sprite>
     <sprite>sprites\osLogin_spr</sprite>
     <sprite>sprites\osText_spr</sprite>
+    <sprite>sprites\hackText_spr</sprite>
+    <sprite>sprites\hackLogin_spr</sprite>
   </sprites>
   <backgrounds name="background">
     <backgrounds name="Scenes">
@@ -76,6 +78,7 @@
     </backgrounds>
     <background>background\windowBank_bg</background>
     <background>background\windowLogin_bg</background>
+    <background>background\windowHackTool_bg</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -115,6 +118,7 @@
         <object>objects\windowLogin</object>
         <object>objects\windowExplorer</object>
         <object>objects\windowBank</object>
+        <object>objects\windowHackTool</object>
       </objects>
       <objects name="FileViewer">
         <object>objects\windowFile</object>

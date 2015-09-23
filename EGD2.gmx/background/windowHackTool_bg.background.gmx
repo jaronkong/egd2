@@ -13,7 +13,7 @@
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>512</width>
-  <height>200</height>
-  <data>images\windowLogin_bg.png</data>
+  <width>256</width>
+  <height>370</height>
+  <data>images\windowHackTool_bg.png</data>
 </background>
