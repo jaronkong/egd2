@@ -125,9 +125,12 @@ linkType[linkCount] = LinkType.Event;
             <kind>1</kind>
             <string>///Login button pressed
 
-if ( textValue[0] == "hunter2" ) {
-    eventOpenDoor( );
-    event_user( 1 );
+if ( instance_exists( windowHackTool ) ) {
+    var tPassword = windowHackTool.textValue[0];
+    if ( ( textValue[0] == tPassword ) &amp;&amp; ( tPassword != "" ) ) {
+        eventOpenDoor( );
+        event_user( 1 );
+    }
 }
 </string>
           </argument>

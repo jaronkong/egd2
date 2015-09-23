@@ -105,6 +105,73 @@ linkType[linkCount] = LinkType.Event;
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///The actuall password
+
+password = "dontforgetme";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Update characters
+
+var tDoItAgain = false;
+
+for ( var i = 1; i &lt;= string_length( password ); ++i ) {
+    repeat ( 5 ) {
+        var letter = string_char_at( textValue[0], i );
+        if ( letter != string_char_at( password, i ) ) {
+            char = choose(
+                irandom_range( 65, 90 ),
+                irandom_range( 97, 122 ),
+                irandom_range( 48, 57 ) );
+            textValue[0] = string_delete( textValue[0], i, 1 );
+            textValue[0] = string_insert( textValue[0], chr( char ), i+1 );
+            tDoItAgain = true;
+        }
+    }
+}
+
+if ( tDoItAgain ) {
+    alarm[11] = 1;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="3" enumb="0">
       <action>
@@ -164,7 +231,10 @@ textActive = -1;
             <kind>1</kind>
             <string>///Generate a password
 
-show_debug_message(textValue[0]);
+if ( textValue[0] == "" ) {
+    textValue[0] = string_repeat( "X", string_length( password ) );
+    alarm[11] = 1;
+}
 </string>
           </argument>
         </arguments>
