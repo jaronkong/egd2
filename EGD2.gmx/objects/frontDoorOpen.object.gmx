@@ -46,7 +46,7 @@ destinationRoom = Main_rm;
 clicked = false;
 active = true;
 
-creationWindow = window;
+creationWindow = windowLogin;
 cursorImage = cursorInteract_spr;
 
 

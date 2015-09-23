@@ -65,16 +65,11 @@ back = windowLogin_bg;
             <kind>1</kind>
             <string>///Create textboxes
 
-textImage[textCount] = bankUsername_spr;
-textPosX[textCount] = 122;
-textPosY[textCount] = 285;
-textValue[textCount] = "";
-textHidden[textCount] = false;
-++textCount;
+textAlignH = fa_center;
 
-textImage[textCount] = bankPassword_spr;
-textPosX[textCount] = 122;
-textPosY[textCount] = 360;
+textImage[textCount] = osText_spr;
+textPosX[textCount] = 310;
+textPosY[textCount] = 135;
 textValue[textCount] = "";
 textHidden[textCount] = true;
 ++textCount;
@@ -100,9 +95,9 @@ textHidden[textCount] = true;
             <kind>1</kind>
             <string>///Create the button
 
-linkIcon[linkCount] = bankLogin_spr;
-linkPosX[linkCount] = 189;
-linkPosY[linkCount] = 464;
+linkIcon[linkCount] = osLogin_spr;
+linkPosX[linkCount] = 309;
+linkPosY[linkCount] = 168;
 linkAction[linkCount] = 15;
 linkType[linkCount] = LinkType.Event;
 ++linkCount;
@@ -130,10 +125,9 @@ linkType[linkCount] = LinkType.Event;
             <kind>1</kind>
             <string>///Login button pressed
 
-if ( textValue[0] == "alanz" ) {
-    if ( textValue[1] == "moneymoney3" ) {
-        show_debug_message( "You win!" );
-    }
+if ( textValue[0] == "hunter2" ) {
+    eventOpenDoor( );
+    event_user( 1 );
 }
 </string>
           </argument>

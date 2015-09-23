@@ -47,6 +47,8 @@
     <sprite>sprites\bankLogin_spr</sprite>
     <sprite>sprites\textCursor_spr</sprite>
     <sprite>sprites\noise_spr</sprite>
+    <sprite>sprites\osLogin_spr</sprite>
+    <sprite>sprites\osText_spr</sprite>
   </sprites>
   <backgrounds name="background">
     <backgrounds name="Scenes">
